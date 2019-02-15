@@ -28,11 +28,15 @@ class Blockchain {
       hash,
       this.pendingTransactions
     );
-    
+
     this.pendingTransactions = []; //sets to empty array. all pendingTransactions put in block
     this.chain.push(newBlock); //pushes new block to chain
 
     return newBlock; //returns the new block
+  }
+
+  getLastBlock() {
+    return this.chain[this.chain.length-1]; //returns last block of chain
   }
 
 }
