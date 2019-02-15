@@ -8,3 +8,12 @@ class Block {
     this.prevBlockHash = prevBlockHash // hash data from previous block
   }
 }
+
+class Blockchain {
+  constructor() {
+    this.chain = [];
+    this.pendingTransactions = [];
+
+    this.createNewBlock(100, '0', 'Genesis block')
+  }
+}
