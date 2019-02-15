@@ -11,9 +11,10 @@ class Block {
 
 class Blockchain {
   constructor() {
-    this.chain = [];
-    this.pendingTransactions = [];
+    this.chain = []; //where all blocks mined will be stored as chain``
+    this.pendingTransactions = []; // where new transactions are held before being placed in new block
 
-    this.createNewBlock(100, '0', 'Genesis block')
+    this.createNewBlock(100, '0', 'Genesis block') //Genesis Block. First block in the chain
   }
+
 }
