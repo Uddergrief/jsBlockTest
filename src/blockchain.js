@@ -12,14 +12,12 @@ class Block {
 }
 
 class Blockchain {
-  constructor() {
+  constructor(){
     this.chain = []; //where all blocks mined will be stored as chain``
     this.pendingTransactions = []; // where new transactions are held before being placed in new block
-
-    this.createNewBlock(100, '0', 'Genesis block') //Genesis Block. First block in the chain
+    this.createNewBlock(100, '0', 'Genesis block'); //Genesis Block. First block in the chain
   }
-
-  //create new block takes 3 params
+  //New block takes 3 params
   createNewBlock(nonce, prevBlockHash, hash){
     //creates new block object
     const newBlock = new Block(
@@ -30,17 +28,16 @@ class Blockchain {
       hash,
       this.pendingTransactions
     );
-
     this.pendingTransactions = []; //sets to empty array. all pendingTransactions put in block
     this.chain.push(newBlock); //pushes new block to chain
     return newBlock; //returns the new block
   }
 
-  getLastBlock() {
+  getLastBlock(){
     return this.chain[this.chain.length-1]; //returns last block of chain
   }
 
-  makeNewTransaction(amount, sender, recipient){
+  makeNewTransaction(amount, sender, recipient) {
     //create transaction object from input params
     const transaction = {
       amount: amount, //how much is being sent to location
@@ -48,9 +45,7 @@ class Blockchain {
       recipient: recipient //recipient's address
     }
     this.pendingTransactions.push(transaction); //pushes transaction to pendingTransactions when new transaction created
-
-    console.log(`>>> Transaction: ${amount} from ${sender} to ${recipient}`); //logs transaction
-
+    console.log(`=> Transaction: ${amount} from ${sender} to ${recipient}`); //logs transaction
     return this.getLatestBlock().index+1; //return number of block transaction will be added to.
   }
 
@@ -64,7 +59,6 @@ class Blockchain {
   proofOfWork(prevBlockHash, currentBlockData){
     let nonce = 0;
     let hash = this.hashBlock(prevBlockhash, currentBlockData, nonce);
-
     while (hash.substring(0, 2) !== '00') { //if hash doesn't start with '00'
       nonce++; //adds to nonce value
       hash = this.hashBlock(prevBlockHash, currentBlockData, nonce); //block is rehashed
