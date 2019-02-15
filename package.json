@@ -16,6 +16,10 @@
     "test": "test"
   },
   "dependencies": {
+    "graphql-yoga": "^1.17.4",
     "sha256": "^0.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
