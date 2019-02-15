@@ -53,4 +53,11 @@ class Blockchain {
 
     return this.getLatestBlock().index+1; //return number of block transaction will be added to.
   }
+
+  hashBlock(prevBlockHash, currentBlock, nonce){
+    //data gets previous block's hash, adds currentBlock, and nonce value;
+    const data = prevBlockHash + JSON.stringify(currentBlock) + nonce;
+    const hash = sha256(data); //hashes data
+    return hash;
+  }
 }
