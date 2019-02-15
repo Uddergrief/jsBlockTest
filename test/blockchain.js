@@ -1,3 +1,5 @@
+const sha256 = require('sha256');
+
 class Block {
   constructor(index, timestamp, nonce, prevBlockHash, hash, transactions){
     this.index = index; // block number of chain
@@ -31,7 +33,6 @@ class Blockchain {
 
     this.pendingTransactions = []; //sets to empty array. all pendingTransactions put in block
     this.chain.push(newBlock); //pushes new block to chain
-
     return newBlock; //returns the new block
   }
 
@@ -39,4 +40,17 @@ class Blockchain {
     return this.chain[this.chain.length-1]; //returns last block of chain
   }
 
+  makeNewTransaction(amount, sender, recipient){
+    //create transaction object from input params
+    const transaction = {
+      amount: amount, //how much is being sent to location
+      sender: sender, //sender's address
+      recipient: recipient //recipient's address
+    }
+    this.pendingTransactions.push(transaction); //pushes transaction to pendingTransactions when new transaction created
+
+    console.log(`>>> Transaction: ${amount} from ${sender} to ${recipient}`); //logs transaction
+
+    return this.getLatestBlock().index+1; //return number of block transaction will be added to.
+  }
 }
