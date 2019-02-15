@@ -60,4 +60,15 @@ class Blockchain {
     const hash = sha256(data); //hashes data
     return hash;
   }
+
+  proofOfWork(prevBlockHash, currentBlockData){
+    let nonce = 0;
+    let hash = this.hashBlock(prevBlockhash, currentBlockData, nonce);
+
+    while (hash.substring(0, 2) !== '00') { //if hash doesn't start with '00'
+      nonce++; //adds to nonce value
+      hash = this.hashBlock(prevBlockHash, currentBlockData, nonce); //block is rehashed
+    };
+    return nonce; //returns nonce value
+  }
 }
