@@ -17,4 +17,22 @@ class Blockchain {
     this.createNewBlock(100, '0', 'Genesis block') //Genesis Block. First block in the chain
   }
 
+  //create new block takes 3 params
+  createNewBlock(nonce, prevBlockHash, hash){
+    //creates new block object
+    const newBlock = new Block(
+      this.chain.length + 1,
+      Date.now(),
+      nonce,
+      prevBlockHash,
+      hash,
+      this.pendingTransactions
+    );
+    
+    this.pendingTransactions = []; //sets to empty array. all pendingTransactions put in block
+    this.chain.push(newBlock); //pushes new block to chain
+
+    return newBlock; //returns the new block
+  }
+
 }
