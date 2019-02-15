@@ -17,7 +17,7 @@ class Blockchain {
     this.pendingTransactions = []; // where new transactions are held before being placed in new block
     this.createNewBlock(100, '0', 'Genesis block'); //Genesis Block. First block in the chain
   }
-  //New block takes 3 params
+  //New block takes 3 param
   createNewBlock(nonce, prevBlockHash, hash){
     //creates new block object
     const newBlock = new Block(
@@ -33,7 +33,7 @@ class Blockchain {
     return newBlock; //returns the new block
   }
 
-  getLastBlock(){
+  getLatestBlock(){
     return this.chain[this.chain.length-1]; //returns last block of chain
   }
 
@@ -58,7 +58,7 @@ class Blockchain {
 
   proofOfWork(prevBlockHash, currentBlockData){
     let nonce = 0;
-    let hash = this.hashBlock(prevBlockhash, currentBlockData, nonce);
+    let hash = this.hashBlock(prevBlockHash, currentBlockData, nonce);
     while (hash.substring(0, 2) !== '00') { //if hash doesn't start with '00'
       nonce++; //adds to nonce value
       hash = this.hashBlock(prevBlockHash, currentBlockData, nonce); //block is rehashed
@@ -66,3 +66,4 @@ class Blockchain {
     return nonce; //returns nonce value
   }
 }
+module.exports = Blockchain;

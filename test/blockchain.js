@@ -1,4 +1,4 @@
-const Blockchain = require('../src/blockchain.js');
+const Blockchain = require('../src/blockchain');
 
 function mine(blockChain){
   console.log('=> Mining Blockchain....');
@@ -13,7 +13,7 @@ function mine(blockChain){
   const blockHash = blockChain.hashBlock(prevBlockHash, currentBlockData, nonce);
 
   //mining reward
-  blockChain.makeNewTransaction(1,'00000', miningNode);
+  blockChain.makeNewTransaction(1,'00000', 'miningNode');
   console.log(`=> Create new Block:\n${blockChain.createNewBlock(nonce, prevBlockHash, blockHash)}`);
 }
 
